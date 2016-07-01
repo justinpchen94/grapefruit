@@ -1,0 +1,18 @@
+{
+  "name": "grapefruit",
+  "description": "A Help Desk replacement, but just for Justin",
+  "main": "index.js",
+  "authors": [
+    "Justin Chen"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/justinpchen94/grapefruit",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "client/lib",
+    "test",
+    "tests"
+  ]
+}

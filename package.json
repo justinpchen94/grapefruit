@@ -1,0 +1,25 @@
+{
+  "name": "grapefruit",
+  "version": "1.0.0",
+  "description": "A Help Desk replacement, but just for Justin",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/justinpchen94/grapefruit.git"
+  },
+  "author": "Justin Chen",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/justinpchen94/grapefruit/issues"
+  },
+  "homepage": "https://github.com/justinpchen94/grapefruit#readme",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "nodemon": "^1.9.2",
+    "request": "^2.72.0"
+  }
+}
