@@ -8,6 +8,7 @@ angular.module('App.signinCtrl', [
       authFactory.signin($scope.user)
         .then(function(token) {
         $window.localStorage.setItem('com.grapefruit', token);
+        $window.localStorage.setItem('username',$scope.user.username);
         $location.path('/dashboard');
         })
         .catch(function (error) {
@@ -19,6 +20,7 @@ angular.module('App.signinCtrl', [
       authFactory.signup($scope.user)
         .then(function(token) {
         $window.localStorage.setItem('com.grapefruit', token);
+        $window.localStorage.setItem('username',$scope.user.username);
         $location.path('/dashboard');
 
         })

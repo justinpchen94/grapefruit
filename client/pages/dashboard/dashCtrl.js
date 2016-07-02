@@ -5,7 +5,7 @@ angular.module('App.dashCtrl', [
     $scope.display = "this is the dashboard page";
     
     $scope.newTicket = {
-      name: 'test',
+      name: $window.localStorage.getItem('username'),
       topic: 'bbb',
       problem: 'ccc'
     };
@@ -16,8 +16,16 @@ angular.module('App.dashCtrl', [
 
     $scope.displayTickets = function() {
       console.log("displaying tickets");
-      // ticketFactory.displayTickets();
-      //will eventually be a promise
+      ticketFactory.displayTickets()
+        .then(function(result) {
+          console.log("result of displaying tickets");
+          console.log(result);
+          $scope.tickets = result.data.data;
+
+        })
+        .catch(function(err) {
+          console.error(error);
+        });
     };
 
     $scope.addTicket = function() {
@@ -30,6 +38,8 @@ angular.module('App.dashCtrl', [
       });
 
     };
+
+    $scope.displayTickets();
 
 
 

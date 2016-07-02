@@ -8,7 +8,8 @@ angular.module('ticketFactory', [])
         method:'GET',
         url: 'api/ticket',
       }).then(function(result) {
-        console.log("the result of getting a ticket");
+        console.log("ticketFactory:11 - the result of getting a ticket");
+        console.log(result);
         return result;
       });
     };
@@ -40,7 +41,7 @@ angular.module('ticketFactory', [])
 
 
     return {
-      displayTicket: getTickets,
+      displayTickets: getTickets,
       addTicket: addTicket,
       updateTicket: putTicket,
       deleteTicket: deleteTicket
