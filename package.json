@@ -2,7 +2,7 @@
   "name": "grapefruit",
   "version": "1.0.0",
   "description": "A Help Desk replacement, but just for Justin",
-  "main": "index.js",
+  "main": "./server/server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon server/server.js"
@@ -15,6 +15,9 @@
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/justinpchen94/grapefruit/issues"
+  },
+  "engines": {
+    "node": "6.2.2"
   },
   "homepage": "https://github.com/justinpchen94/grapefruit#readme",
   "dependencies": {
