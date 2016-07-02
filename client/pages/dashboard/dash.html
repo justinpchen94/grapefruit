@@ -1,14 +1,5 @@
 <div layout="row" ng-controller="dashCtrl" >
   
-  <!-- <md-toolbar layout="row">
-    <div class="md-toolbar-tools">
-      <md-button ng-click="toggleSidenav('left')" class="md-icon-button">
-        <md-icon aria-label="Menu" ]><i class="material-icons">menu</i></md-icon>
-      </md-button>
-      <h1>MVP</h1>
-    </div>
-  </md-toolbar> -->
-  
   <div layout="row" flex>
     <md-sidenav layout="column" class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="">
       
@@ -69,7 +60,7 @@
           <h1>MVP</h1>
           
           <span flex></span>
-          <md-button aria-label="Search">
+          <md-button aria-label="Search" ng-click="showAdvanced($event)">
               <i class="material-icons">search</i>
           </md-button>
           
@@ -85,18 +76,15 @@
                     <md-card-content>
                       <h2>Active Tickets</h2>
                       <md-list>
-                        <!-- <md-item ng-repeat="item in activity | filter:search"> -->
-                        <md-item>
+                        <md-item ng-repeat="ticket in tickets | orderBy: 'ticket.createdAt' : true ">
+                        <!-- <md-item> -->
                           <md-item-content>
-                            <div class="md-tile-left inset" hide-sm>
-                              <i class="material-icons md-48">account_box</i>        
-                            </div>
 
                             <div class="md-tile-content">
-                              <h3>Name of Ticket Owner</h3>
-                              <h4>Topic</h4>
+                              <h3>{{ticket.name}}</h3>
+                              <h4>{{ticket.topic}}</h4>
                               <p>
-                                Problem
+                                {{ticket.problem}}
                               </p>
                             </div>
                           </md-item-content>
@@ -128,7 +116,53 @@
 </div>
 
 
+<script type="text/ng-template" id="addTicket.tmpl.html">
+<md-dialog aria-label="Add Ticket"  ng-cloak flex="80">
+  <form>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>Add Ticket</h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="cancel()">
+          <md-icon aria-label="Close dialog"><i class="material-icons">close</i></md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
 
+    <md-dialog-content>
+      <div class="md-dialog-content">
+
+          <md-input-container class="md-block" flex-gt-xs="">
+            <label>Name</label>
+            <input ng-model="newTicket.name" disabled="">
+          </md-input-container>
+
+
+          <md-input-container class="md-block" flex-gt-sm="">
+            <label>Topic</label>
+            <input ng-model="newTicket.topic">
+          </md-input-container>
+
+          <md-input-container class="md-block" flex-gt-sm="">
+            <label>Detailed Problem</label>
+            <input ng-model="newTicket.problem">
+          </md-input-container>
+        
+      </div>
+    </md-dialog-content>
+
+    <md-dialog-actions layout="row">   
+      <span flex></span>
+      <md-button ng-click="cancel()">
+       Cancel
+      </md-button>
+      <md-button ng-click="answer()">
+       Add
+      </md-button>
+    </md-dialog-actions>
+  </form>
+</md-dialog>
+</script>
 
 
 

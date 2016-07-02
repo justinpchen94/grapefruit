@@ -1,5 +1,5 @@
 angular.module('App.dashCtrl', ['ngMaterial'])
-  .controller('dashCtrl', function ($scope, $http, $location, $window, authFactory, ticketFactory, $mdSidenav) {
+  .controller('dashCtrl', function ($scope, $http, $location, $window, authFactory, ticketFactory, $mdSidenav, $mdDialog) {
 
   $scope.toggleSidenav = function(menuId) {
     $mdSidenav(menuId).toggle();
@@ -43,8 +43,8 @@ angular.module('App.dashCtrl', ['ngMaterial'])
     
     $scope.newTicket = {
       name: $window.localStorage.getItem('username'),
-      topic: 'asdfasda',
-      problem: 'fsadfasdf'
+      topic: '',
+      problem: ''
     };
 
     $scope.id = '';
@@ -63,6 +63,8 @@ angular.module('App.dashCtrl', ['ngMaterial'])
         });
     };
 
+    $scope.displayTickets();
+
     $scope.addTicket = function() {
       ticketFactory.addTicket($scope.newTicket).then(function(addResult) {
         $window.localStorage.setItem('com.grapefruit', addResult.token);
@@ -71,7 +73,57 @@ angular.module('App.dashCtrl', ['ngMaterial'])
 
     };
 
-    // $scope.displayTickets();
+
+
+    function DialogController($scope, $mdDialog, add, newTicket) {
+
+      $scope.newTicket = newTicket;
+      $scope.hide = function() {
+        $mdDialog.hide();
+      };
+
+      $scope.cancel = function() {
+        $mdDialog.cancel();
+      };
+
+      $scope.answer = function(answer) {
+        add();
+        $mdDialog.hide(answer);
+      };
+    }
+
+    $scope.showAdd = function(ev) {
+      console.log("show advanced");
+
+      $mdDialog.show({
+        controller: DialogController,
+        templateUrl: 'addTicket.tmpl.html',
+        parent: angular.element(document.body),
+        targetEvent: ev,
+        clickOutsideToClose:true,
+        fullscreen: true,
+        locals: {
+         add: $scope.addTicket,
+         newTicket: $scope.newTicket
+        },
+      })
+      .then(function(answer) {
+        $scope.status = 'You said the information was "' + answer + '".';
+      }, function() {
+        $scope.status = 'You cancelled the dialog.';
+      });
+
+
+
+      // $scope.$watch(function() {
+      //   return $mdMedia('xs') || $mdMedia('sm');
+      // }, function(wantsFullScreen) {
+      //   $scope.customFullscreen = (wantsFullScreen === true);
+      // });
+
+    };
+
+
 
 
 });

@@ -98,9 +98,13 @@ $scale-base-1: (1 + $scale / 100%);
       padding-bottom: .5em;
     }
     
-    &:last-child {
-      border-top: 1px solid rgba(0,0,0,.25);
-      padding-top: .5em;
+  }
+ #topBorder {
+    border-top: 1px solid rgba(0,0,0,.25);
+    padding-top: .5em;
+    
+    a {
+      color: inherit;      
     }
   }
 }

@@ -108,8 +108,10 @@
     #landingTitle small:first-child {
       border-bottom: 1px solid rgba(0, 0, 0, 0.25);
       padding-bottom: .5em; }
-    #landingTitle small:last-child {
-      border-top: 1px solid rgba(0, 0, 0, 0.25);
-      padding-top: .5em; }
+  #landingTitle #topBorder {
+    border-top: 1px solid rgba(0, 0, 0, 0.25);
+    padding-top: .5em; }
+    #landingTitle #topBorder a {
+      color: inherit; }
 
 /*# sourceMappingURL=index.css.map */
