@@ -1,7 +1,7 @@
 var mongoose = require('mongoose'),
     bcrypt   = require('bcrypt'),
     Q        = require('q'),
-    SALT_WORK_FACTOR  = 10;
+    saltRounds  = 10;
 
 
 var UserSchema = new mongoose.Schema({
@@ -53,38 +53,21 @@ UserSchema.methods.comparePasswords = function (attempt) {
 };
 
 UserSchema.pre('save', function (next) {
-  console.log("inside pre save method");
 
   var user = this;
 
-  console.log("this is the pre changed user");
-  console.log(user);
-  // only hash the password if it has been modified (or is new)
-  // if (!user.isModified('password')) {
-  //   return next();
-  // }
-
-  // generate a salt
-  bcrypt.genSalt(SALT_WORK_FACTOR, function(err, salt) {
-    console.log("generated salt");
-    console.log(salt);
+  bcrypt.genSalt(saltRounds, function(err, salt) {
     if (err) {
       return next(err);
     }
 
-    // hash the password along with our new salt
     bcrypt.hash(user.password, salt, function(err, hash) {
       if (err) {
         return next(err);
       }
-    console.log("generated hash");
-    console.log(hash);
 
-      // override the cleartext password with the hashed one
       user.password = hash;
       user.salt = salt;
-      console.log("this is the user");
-      console.log(user);
       next();
     });
   });

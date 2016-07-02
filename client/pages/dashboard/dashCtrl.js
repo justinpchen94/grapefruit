@@ -1,22 +1,31 @@
 angular.module('App.dashCtrl', [
   ])
-  .controller('dashCtrl', function ($scope, $http, $location, $window, authFactory) {
+  .controller('dashCtrl', function ($scope, $http, $location, $window, authFactory, ticketFactory) {
+
     $scope.display = "this is the dashboard page";
-
     
+    $scope.newTicket = {
+      username: 'test',
+      topic: 'bbb',
+      problem: 'ccc'
+    };
 
-  $scope.signout = function() {
-    authFactory.signout();
-    //   .then(function(token) {
-    //   $window.localStorage.setItem('com.grapefruit', token);
-    //   $location.path('/dashboard');
+    $scope.signout = function() {
+      authFactory.signout();
+    };
 
-    //   })
-    // .catch(function (error) {
-    //   console.error(error);
-    // });
+    $scope.displayTickets = function() {
+      ticketFactory.displayTickets();
+      //will eventually be a promise
+    };
 
-  };
+    $scope.addTicket = function() {
+      ticketFactory.addTicket($scope.newTicket).then(function(addResult) {
+        console.log("dash controller received below upon adding");
+        console.log(addResult);
+      });
+
+    };
 
 
 

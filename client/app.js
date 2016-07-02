@@ -5,7 +5,8 @@ angular.module('App', [
   'App.dashCtrl',
   'App.404Ctrl',
   'appFactory',
-  'authFactory'
+  'authFactory',
+  'ticketFactory'
   // 'ngStorage'
   ])
   .config(function($stateProvider, $urlRouterProvider, $httpProvider){

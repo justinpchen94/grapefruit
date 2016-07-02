@@ -1,10 +1,31 @@
 <div>
   <div>{{display}}</div>
-  <!-- new ticket -->
 
   <button ng-click="signout()">signout</button>
 
+  <!-- new ticket -->
+
+  <div id='newticket'>
+    <h1>New Ticket</h1>
+    <form name="ticketForm" ng-submit='addTicket()'>
+
+      <input name="username" type='text' placeholder="username" ng-model='newTicket.username' required ng-minlength="2" ng-maxlength="10"> 
+
+      <input name="topic" type="text" placeholder="topic"  ng-model='newTicket.topic' ng-minlength="2">
+
+      <input name="problem" type="text" placeholder="problem"  ng-model='newTicket.problem' ng-minlength="2">
+
+
+      <!-- <div ng-show="signupForm.username.$error.minlength" class="error">Username is too short.</div>
+      <div ng-show="signupForm.username.$error.maxlength" class="error">Username is too long.</div>
+      <div ng-show="signupForm.password.$error.minlength" class="error">Password is too short.</div> -->
+
+      <button>Add Ticket</button>
+    </form>
+  </div>
 
   <!-- display tickets -->
+
+  <div id="ticketList">  </div>
   
 </div>
