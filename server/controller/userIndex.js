@@ -12,16 +12,6 @@ module.exports = {
     post: function(req, res) {
       console.log("Received POST at /api/user/");
 
-      create = Q.nbind(User.create, User);
-      User.create({
-         username: 'asdfadf', 
-         password: 'asdf',
-         salt: 'tutorials',
-         role: 'student'
-      }).then(function(res) {
-        console.log("created user");
-        console.log(res);
-      });
     }
   },
   'signin': {
@@ -29,10 +19,12 @@ module.exports = {
       console.log("Received GET at /api/user/signin");
       res.end("Received GET at /api/user/signin");
     },
-    post: function(req, res) {
+    post: function(req, res, next) {
+      console.log('***********************************************');
       console.log("Received POST at /api/user/signin");
       var username = req.body.username;
       var password = req.body.password;
+
       
       var findUser = Q.nbind(User.findOne, User);
       findUser({username: username})
@@ -42,6 +34,8 @@ module.exports = {
           } else {
             return user.comparePasswords(password)
               .then(function(foundUser) {
+                console.log("foundUser");
+                console.log(foundUser);
                 if (foundUser) {
                   var token = jwt.encode(user, 'secret');
                   res.json({token: token});
@@ -59,12 +53,53 @@ module.exports = {
   'signup': {
     get: function(req,res) {
       console.log("Received GET at /api/user/signup");
+      res.end("Received GET at /api/user/signup");
     },
     post: function(req, res) {
       console.log("Received POST at /api/user/signup");
-      var username = req.body.username;
-      var password = req.body.password;
+    var username  = req.body.username,
+        password  = req.body.password,
+        create,
+        newUser;
 
+    var findOne = Q.nbind(User.findOne, User);
+
+    // check to see if user already exists
+    findOne({username: username})
+      .then(function(user) {
+
+        if (user) {
+          next(new Error('User already exist!'));
+        } else {
+          // make a new user if not one
+          create = Q.nbind(User.create, User);
+          newUser = {
+            username: username,
+            password: password,
+            role: 'student'
+          };
+          return create(newUser);
+        }
+      })
+      .then(function (user) {
+        // create token to send back for auth
+        var token = jwt.encode(user, 'secret');
+        res.json({token: token});
+      })
+      .fail(function (error) {
+        next(error);
+      });
+
+    }
+  },
+  'signout': {
+    get: function(req,res) {
+      console.log("Received GET at /api/user/signout");
+      res.end("Received GET at /api/user/signout");
+    },
+    post: function(req, res) {
+      console.log("Received POST at /api/user/signout");
+      res.end("Received POST at /api/user/signout");
     }
   }
 

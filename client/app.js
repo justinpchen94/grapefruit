@@ -6,6 +6,7 @@ angular.module('App', [
   'App.404Ctrl',
   'appFactory',
   'authFactory'
+  // 'ngStorage'
   ])
   .config(function($stateProvider, $urlRouterProvider, $httpProvider){
     $stateProvider
@@ -25,6 +26,16 @@ angular.module('App', [
         views: {
           "": {
             templateUrl: './pages/signin/signin.html',
+            controller: 'signinCtrl'
+          }
+        }
+      })
+      .state('signup', {
+        url: '/signup',
+        authenticate: false,
+        views: {
+          "": {
+            templateUrl: './pages/signin/signup.html',
             controller: 'signinCtrl'
           }
         }
