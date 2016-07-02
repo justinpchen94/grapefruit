@@ -1,13 +1,50 @@
-angular.module('App.dashCtrl', [
-  ])
-  .controller('dashCtrl', function ($scope, $http, $location, $window, authFactory, ticketFactory) {
+angular.module('App.dashCtrl', ['ngMaterial'])
+  .controller('dashCtrl', function ($scope, $http, $location, $window, authFactory, ticketFactory, $mdSidenav) {
 
-    $scope.display = "this is the dashboard page";
+  $scope.toggleSidenav = function(menuId) {
+    $mdSidenav(menuId).toggle();
+  };
+ 
+
+  $scope.username = $window.localStorage.getItem('username');
+  $scope.role = $window.localStorage.getItem('role');
+  $scope.menu = [
+      {
+        link : '',
+        title: 'Dashboard',
+        icon: 'dashboard'
+      },
+      {
+        link : '',
+        title: 'Class',
+        icon: 'group'
+      },
+      {
+        link : '',
+        title: 'Messages',
+        icon: 'message'
+      }
+    ];
+
+  $scope.admin = [
+    {
+      link : '',
+      title: 'Archive',
+      icon: 'delete'
+    },
+    {
+      link : '',
+      title: 'Settings',
+      icon: 'settings'
+    }
+  ];
+
+  $scope.display = "this is the dashboard page";
     
     $scope.newTicket = {
       name: $window.localStorage.getItem('username'),
-      topic: 'bbb',
-      problem: 'ccc'
+      topic: 'asdfasda',
+      problem: 'fsadfasdf'
     };
 
     $scope.id = '';
@@ -34,8 +71,7 @@ angular.module('App.dashCtrl', [
 
     };
 
-    $scope.displayTickets();
+    // $scope.displayTickets();
 
 
-
-  });
+});

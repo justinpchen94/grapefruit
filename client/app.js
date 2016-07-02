@@ -6,9 +6,13 @@ angular.module('App', [
   'App.404Ctrl',
   'authFactory',
   'ticketFactory'
-  // 'ngStorage'
   ])
-  .config(function($stateProvider, $urlRouterProvider, $httpProvider){
+  .config(function($stateProvider, $urlRouterProvider, $httpProvider, $mdThemingProvider){
+
+    $mdThemingProvider.theme('default')
+      .primaryPalette('pink')
+      .accentPalette('orange');
+
     $stateProvider
       .state('landing', {
         url: '/',
@@ -57,6 +61,16 @@ angular.module('App', [
           "": {
             templateUrl: './pages/error/404.html',
             controller: '404Ctrl'
+          }
+        }
+      })
+      .state('test', {
+        url: '/test',
+        authenticate: false,
+        views: {
+          "": {
+            templateUrl: './pages/test/test.html',
+            controller: 'testCtrl'
           }
         }
       });

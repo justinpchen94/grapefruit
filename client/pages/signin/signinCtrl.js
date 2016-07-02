@@ -6,10 +6,12 @@ angular.module('App.signinCtrl', [
 
     $scope.signin = function() {
       authFactory.signin($scope.user)
-        .then(function(token) {
-        $window.localStorage.setItem('com.grapefruit', token);
-        $window.localStorage.setItem('username',$scope.user.username);
-        $location.path('/dashboard');
+        .then(function(result) {
+            console.log(result);
+          $window.localStorage.setItem('com.grapefruit', result.token);
+          $window.localStorage.setItem('username',result.user.username);
+          $window.localStorage.setItem('role',result.user.role);
+          $location.path('/dashboard');
         })
         .catch(function (error) {
           console.error(error);
@@ -18,10 +20,11 @@ angular.module('App.signinCtrl', [
 
     $scope.signup = function() {
       authFactory.signup($scope.user)
-        .then(function(token) {
-        $window.localStorage.setItem('com.grapefruit', token);
-        $window.localStorage.setItem('username',$scope.user.username);
-        $location.path('/dashboard');
+        .then(function(result) {
+          $window.localStorage.setItem('com.grapefruit', result.token);
+          $window.localStorage.setItem('username',result.user.username);
+          $window.localStorage.setItem('role',result.user.role);
+          $location.path('/dashboard');
 
         })
       .catch(function (error) {

@@ -26,7 +26,8 @@ var ticketSchema = new mongoose.Schema({
     unique: true
   }
 
-});
+}, { timestamps: true });
+
 
 var createSha = function(str) {
   var shasum = crypto.createHash('sha1');

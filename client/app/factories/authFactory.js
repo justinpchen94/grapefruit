@@ -10,7 +10,7 @@ angular.module('authFactory', [])
           password: user.password
         }
       }).then(function(result) {
-        return result.data.token;
+        return result.data;
       });
 
     };
@@ -24,7 +24,7 @@ angular.module('authFactory', [])
         password: user.password
       }
     }).then(function(result) {
-      return result.data.token;
+      return result.data;
     });
 
   };
@@ -32,6 +32,7 @@ angular.module('authFactory', [])
   var signout = function () {
     $window.localStorage.removeItem('com.grapefruit');
     $window.localStorage.removeItem('username');
+    $window.localStorage.removeItem('role');
     $location.path('/');
   };
 

@@ -23,23 +23,21 @@ var UserSchema = new mongoose.Schema({
     required: true
   }
 
-});
+}, { timestamps: true });
+
 
 UserSchema.methods.comparePasswords = function (attempt) {
-  console.log("inside compare passwords");
   var defer = Q.defer();
   var savedPassword = this.password;
   bcrypt.compare(attempt, savedPassword, function (err, isMatch) {
     if (err) {
-      console.log("rejecting");
       defer.reject(err);
     } else {
-      console.log("resolving");
       defer.resolve(isMatch);
     }
   });
   return defer.promise;
-  
+
 };
 
 UserSchema.pre('save', function (next) {

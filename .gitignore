@@ -1,3 +1,4 @@
 node_modules/
 client/lib/
 server/.DS_Store
+client/pages/test/

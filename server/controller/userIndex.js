@@ -38,7 +38,7 @@ module.exports = {
                 console.log(foundUser);
                 if (foundUser) {
                   var token = jwt.encode(user, 'secret');
-                  res.json({token: token});
+                  res.json({token: token, user:user});
                 } else {
                   return next(new Error('No user'));
                 }
@@ -67,7 +67,6 @@ module.exports = {
     // check to see if user already exists
     findOne({username: username})
       .then(function(user) {
-
         if (user) {
           next(new Error('User already exist!'));
         } else {
@@ -76,15 +75,17 @@ module.exports = {
           newUser = {
             username: username,
             password: password,
-            role: 'student'
+            role: 'Instructor'
           };
           return create(newUser);
         }
       })
       .then(function (user) {
         // create token to send back for auth
+        console.log("created user");
+        console.log(user);
         var token = jwt.encode(user, 'secret');
-        res.json({token: token});
+        res.json({token: token, user:user});
       })
       .fail(function (error) {
         next(error);

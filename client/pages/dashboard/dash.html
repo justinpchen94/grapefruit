@@ -1,35 +1,142 @@
-<div>
-  <div>{{display}}</div>
+<div layout="row" ng-controller="dashCtrl" >
+  
+  <!-- <md-toolbar layout="row">
+    <div class="md-toolbar-tools">
+      <md-button ng-click="toggleSidenav('left')" class="md-icon-button">
+        <md-icon aria-label="Menu" ]><i class="material-icons">menu</i></md-icon>
+      </md-button>
+      <h1>MVP</h1>
+    </div>
+  </md-toolbar> -->
+  
+  <div layout="row" flex>
+    <md-sidenav layout="column" class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="">
+      
+      <md-toolbar class="md-tall md-hue-2">
+      <span flex></span>
+      <div layout="column" class="md-toolbar-tools-bottom inset">
+      <i class="material-icons md-48">account_box</i>        
+      <span></span>
+        <div>{{username}}</div>
+        <div>{{role}}</div>
+      </div>
+    </md-toolbar>
 
-  <button ng-click="signout()">signout</button>
+    <md-list>
+      <md-item ng-repeat="item in menu">
+        <a>
+          <md-item-content md-ink-ripple layout="row" layout-align="start center">
+            <div class="inset">
+              <ng-md-icon>
+                <i class="material-icons md-36">{{item.icon}}</i>
+              </ng-md-icon>
+            </div>
+            <div class="inset">{{item.title}}
+            </div>
+          </md-item-content>
+        </a>
+      </md-item>
+    </md-list>
+    <md-subheader>Accounts</md-subheader>
 
-  <!-- new ticket -->
+      <md-item ng-repeat="item in admin">
+        <a>
+          <md-item-content md-ink-ripple layout="row" layout-align="start center">
+            <div class="inset">
+              <ng-md-icon>
+                <i class="material-icons md-36">{{item.icon}}</i>
+              </ng-md-icon>
+            </div>
+            <div class="inset">{{item.title}}
+            </div>
+          </md-item-content>
+        </a>
+      </md-item>
 
-  <div id='newticket'>
-    <h1>New Ticket</h1>
-    <form name="ticketForm" ng-submit='addTicket()'>
+    </md-sidenav>
 
 
-      <input name="topic" type="text" placeholder="topic"  ng-model='newTicket.topic' ng-minlength="2">
+    <div layout="column" flex id="content" layout-fill role="main">
+      <md-button id="addButton" class="md-fab md-fab-bottom-right" aria-label="Add" ng-click="showAdd($event)">
+        <i class="material-icons md-36">add</i>
+      </md-button>
 
-      <input id="problem" name="problem" type="text" placeholder="problem"  ng-model='newTicket.problem' ng-minlength="2">
+      <md-toolbar>
+        <div class="md-toolbar-tools">
+          <md-button ng-click="toggleSidenav('left')" class="md-icon-button">
+            <md-icon aria-label="Menu" ]><i class="material-icons">menu</i></md-icon>
+          </md-button>
+          <h1>MVP</h1>
+          
+          <span flex></span>
+          <md-button aria-label="Search">
+              <i class="material-icons">search</i>
+          </md-button>
+          
+        </div>
+      </md-toolbar>
 
-      <button>Add Ticket</button>
-    </form>
-  </div>
+      <md-content flex md-scroll-y>
+        <ui-view layout="column" layout-fill layout-padding>
+          <div class="inset" hide-sm></div>
+              <div id="tab1-content"
+                   layout="row" layout-align="center center">
+                  <md-card flex-gt-sm="90" flex-gt-md="80">
+                    <md-card-content>
+                      <h2>Active Tickets</h2>
+                      <md-list>
+                        <!-- <md-item ng-repeat="item in activity | filter:search"> -->
+                        <md-item>
+                          <md-item-content>
+                            <div class="md-tile-left inset" hide-sm>
+                              <i class="material-icons md-48">account_box</i>        
+                            </div>
 
-  <!-- display tickets -->
+                            <div class="md-tile-content">
+                              <h3>Name of Ticket Owner</h3>
+                              <h4>Topic</h4>
+                              <p>
+                                Problem
+                              </p>
+                            </div>
+                          </md-item-content>
+                          <md-divider md-inset hide-sm ng-if="!$last"></md-divider>
+                          <md-divider hide-gt-sm ng-if="!$last"></md-divider>
+                        </md-item>
 
-  <div id="ticketList">  
-    <h1>Existing Tickets</h1>
+                        <md-divider></md-divider>
+                        <md-item layout class="inset">
+                            <md-button layout layout-align="start center" flex class="md-primary">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/></svg> More
+                            </md-button>
+                        </md-item>
+                      </md-list>
+                    </md-card-content>
+                  </md-card>
+              </div>
+                        
+        </ui-view>
+      </md-content>
 
-    <div class="ticket" ng-attr-id={{ticket._id}} ng-repeat="ticket in tickets">
-      <div>{{ticket.name}}</div>
-      <div>{{ticket.topic}}</div>
-      <div>{{ticket.problem}}</div>
-      <div>{{ticket.claimed}}</div>
-      <div>{{ticket.completed}}</div>
+
+
+
+
     </div>
   </div>
-  
+
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
