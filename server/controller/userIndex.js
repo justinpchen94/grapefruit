@@ -91,16 +91,6 @@ module.exports = {
       });
 
     }
-  },
-  'signout': {
-    get: function(req,res) {
-      console.log("Received GET at /api/user/signout");
-      res.end("Received GET at /api/user/signout");
-    },
-    post: function(req, res) {
-      console.log("Received POST at /api/user/signout");
-      res.end("Received POST at /api/user/signout");
-    }
   }
 
 };

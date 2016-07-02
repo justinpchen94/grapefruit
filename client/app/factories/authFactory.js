@@ -1,5 +1,5 @@
 angular.module('authFactory', [])
-  .factory('authFactory', function($location, $http, $state) {
+  .factory('authFactory', function($location, $http, $state, $window) {
 
     var signin = function(user) {
       return $http({
@@ -31,7 +31,7 @@ angular.module('authFactory', [])
 
   var signout = function () {
     $window.localStorage.removeItem('com.grapefruit');
-    $location.path('/landing');
+    $location.path('landing');
   };
 
 
