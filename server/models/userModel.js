@@ -39,16 +39,6 @@ UserSchema.methods.comparePasswords = function (attempt) {
     }
   });
   return defer.promise;
-  // var savedPassword = this.password;
-  // return bcrypt.compare(attempt, savedPassword, function (err, isMatch){}).then(function(err, res) {
-  //     if (err) {
-  //       console.log("error comparing passwords");
-  //       return err;
-  //     } else {
-  //       return res;
-  //     }
-
-  // });
   
 };
 
@@ -73,4 +63,4 @@ UserSchema.pre('save', function (next) {
   });
 });
 
-module.exports = mongoose.model('users', UserSchema);
+module.exports = mongoose.model('user', UserSchema);

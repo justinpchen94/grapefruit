@@ -5,7 +5,7 @@ angular.module('App.dashCtrl', [
     $scope.display = "this is the dashboard page";
     
     $scope.newTicket = {
-      username: 'test',
+      name: 'test',
       topic: 'bbb',
       problem: 'ccc'
     };
@@ -15,7 +15,8 @@ angular.module('App.dashCtrl', [
     };
 
     $scope.displayTickets = function() {
-      ticketFactory.displayTickets();
+      console.log("displaying tickets");
+      // ticketFactory.displayTickets();
       //will eventually be a promise
     };
 
@@ -23,6 +24,9 @@ angular.module('App.dashCtrl', [
       ticketFactory.addTicket($scope.newTicket).then(function(addResult) {
         console.log("dash controller received below upon adding");
         console.log(addResult);
+
+        $window.localStorage.setItem('com.grapefruit', addResult.token);
+        $scope.displayTickets();
       });
 
     };

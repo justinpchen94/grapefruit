@@ -1,11 +1,11 @@
 var mongoose = require('mongoose');
+var crypto   = require('crypto');
 
 var ticketSchema = new mongoose.Schema({
 
-  username: {
+  name: {
     type: String,
-    required: true,
-    unique: true
+    required: true
   },
 
   topic: {
@@ -18,23 +18,30 @@ var ticketSchema = new mongoose.Schema({
     required: true
   },
 
-  claimed: {
-    type:Boolean
+  claimed: Boolean,
+
+  id: {
+    type: String,
+    unique: true
   }
 
 });
 
-ticketSchema.pre('save', function (next) {
-  console.log("before saving ticket");
+var createSha = function(str) {
+  var shasum = crypto.createHash('sha1');
+  shasum.update(str);
+  return shasum.digest('hex');
+};
 
-  var user = this;
 
-  user.claimed = false;
-  console.log(user);
+ticketSchema.pre('save', function(next){
+  var code = createSha(this.problem + this.name + this.topic);
+  this.id = code;
+  this.claimed = false;
   next();
-
 });
 
-
-module.exports = mongoose.model('tickets', ticketSchema);
+//TODO:
+//check if exact same ticket has been entered
+module.exports = mongoose.model('ticket', ticketSchema);
 
