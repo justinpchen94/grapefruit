@@ -1,9 +1,13 @@
 var express = require('express');
 var bodyParser = require('body-parser');
+var mongoose = require('mongoose');
 var app = express();
 
+mongoose.connect('mongodb://localhost/grapefruit');
 //Routing
 var routesApi = require('./routesApi.js');
+var routesUser = require('./routesUser.js');
+var routesTicket = require('./routesTickets.js');
 
 app.use(bodyParser.json());
 
@@ -14,14 +18,26 @@ app.use(function(req, res, next) {
   next();
 });
 
+app.use(function(req, res, next) {
+    console.log("Server registering a " + req.method + " request at " + req.url);
+    next(); // Passing the request to the next handler in the stack.
+});
+
 app.set('port', process.env.PORT || 3000);
 
+app.use('/api/user', routesUser);
+app.use('/api/ticket', routesTicket);
 app.use('/api', routesApi);
+
 
 app.use(express.static('./client'));
 
 app.listen(app.get('port'), function() {
-    console.log('Express Server listening on port', app.get('port'));
+  var timestamp = new Date().toISOString().
+  replace(/T/, ' '). 
+  replace(/\..+/, ''); 
+
+  console.log(timestamp + ': Express Server listening on port', app.get('port'));
 });
 
 

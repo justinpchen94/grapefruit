@@ -5,5 +5,4 @@ angular.module('appFactory', [])
     var lastName = '';
     var email = '';
 
-    var signin
   });

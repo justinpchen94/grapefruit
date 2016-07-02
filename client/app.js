@@ -3,7 +3,9 @@ angular.module('App', [
   'App.landingCtrl',
   'App.signinCtrl',
   'App.dashCtrl',
-  'appFactory'
+  'App.404Ctrl',
+  'appFactory',
+  'authFactory'
   ])
   .config(function($stateProvider, $urlRouterProvider, $httpProvider){
     $stateProvider
@@ -36,8 +38,18 @@ angular.module('App', [
             controller: 'dashCtrl'
           }
         }
+      })
+      .state('404', {
+        url: '/404',
+        authenticate: false,
+        views: {
+          "": {
+            templateUrl: './pages/error/404.html',
+            controller: '404Ctrl'
+          }
+        }
       });
 
     $urlRouterProvider
-      .otherwise('/');
+      .otherwise('404');
   });
