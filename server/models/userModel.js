@@ -1,7 +1,8 @@
 var mongoose = require('mongoose'),
     bcrypt   = require('bcrypt'),
     Q        = require('q'),
-    saltRounds  = 10;
+    saltRounds  = 10,
+    db = require('../db.js');
 
 
 var UserSchema = new mongoose.Schema({
@@ -61,4 +62,4 @@ UserSchema.pre('save', function (next) {
   });
 });
 
-module.exports = mongoose.model('user', UserSchema);
+module.exports = mongoose.model('User', UserSchema);

@@ -1,9 +1,17 @@
 var express = require('express');
 var bodyParser = require('body-parser');
-var mongoose = require('mongoose');
+// var mongoose = require('mongoose');
 var app = express();
+var db = require('./db.js');
 
-mongoose.connect('mongodb://localhost/grapefruit');
+// mongoose.connect('mongodb://localhost/grapefruit');
+// var db = mongoose.createConnection('mongodb://admin:password@ds011715.mlab.com:11715/grapefruit');
+// db.on('error', console.error.bind(console, 'connection error:'));
+// db.once('open', function (callback) {
+//   console.log("db up");
+// });
+
+
 //Routing
 var routesApi = require('./routes/routesApi.js');
 var routesUser = require('./routes/routesUser.js');
@@ -20,7 +28,7 @@ app.use(function(req, res, next) {
 
 app.use(function(req, res, next) {
     console.log("Server registering a " + req.method + " request at " + req.url);
-    next(); // Passing the request to the next handler in the stack.
+    next(); 
 });
 
 app.set('port', process.env.PORT || 3000);

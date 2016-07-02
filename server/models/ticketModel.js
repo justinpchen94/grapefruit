@@ -47,5 +47,5 @@ ticketSchema.pre('save', function(next){
 
 //TODO:
 //check if exact same ticket has been entered
-module.exports = mongoose.model('ticket', ticketSchema);
+module.exports = mongoose.model('Ticket', ticketSchema);
 
