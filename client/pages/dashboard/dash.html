@@ -9,16 +9,10 @@
     <h1>New Ticket</h1>
     <form name="ticketForm" ng-submit='addTicket()'>
 
-      <!-- <input name="username" type='text' placeholder="name" ng-model='newTicket.name' required ng-minlength="2" ng-maxlength="10">  -->
 
       <input name="topic" type="text" placeholder="topic"  ng-model='newTicket.topic' ng-minlength="2">
 
-      <input name="problem" type="text" placeholder="problem"  ng-model='newTicket.problem' ng-minlength="2">
-
-
-      <!-- <div ng-show="signupForm.username.$error.minlength" class="error">Username is too short.</div>
-      <div ng-show="signupForm.username.$error.maxlength" class="error">Username is too long.</div>
-      <div ng-show="signupForm.password.$error.minlength" class="error">Password is too short.</div> -->
+      <input id="problem" name="problem" type="text" placeholder="problem"  ng-model='newTicket.problem' ng-minlength="2">
 
       <button>Add Ticket</button>
     </form>
@@ -27,24 +21,15 @@
   <!-- display tickets -->
 
   <div id="ticketList">  
-    <div class="ticket" ng-repeat="ticket in tickets">
+    <h1>Existing Tickets</h1>
+
+    <div class="ticket" ng-attr-id={{ticket._id}} ng-repeat="ticket in tickets">
       <div>{{ticket.name}}</div>
       <div>{{ticket.topic}}</div>
       <div>{{ticket.problem}}</div>
       <div>{{ticket.claimed}}</div>
+      <div>{{ticket.completed}}</div>
     </div>
   </div>
   
-</div>
-
-<div id='container'>
-  <!-- Your html here -->
-<!--   <img src='../../assets/redirect_icon.png'/> -->
-<!--   <div class='link' ng-repeat="link in data.links | orderBy:'visits':true | filter:{title:searchText}" >
-    <div class='visits'><span class='count'>{{link.visits}}</span>Visits</div>
-    <div class='title'>{{link.title}}</div>
-    <div class='original'>{{link.url}}</div>
-    <a ng-click='navToLink(link)' href="{{link.url}}">{{link.base_url}}/{{link.code}}</a>
-  </div> -->
-
 </div>

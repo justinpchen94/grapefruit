@@ -31,6 +31,7 @@ angular.module('authFactory', [])
 
   var signout = function () {
     $window.localStorage.removeItem('com.grapefruit');
+    $window.localStorage.removeItem('username');
     $location.path('/');
   };
 

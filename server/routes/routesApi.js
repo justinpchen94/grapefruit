@@ -1,4 +1,4 @@
-var controllers = require('./controller/userIndex.js');
+var controllers = require('../controller/apiIndex.js');
 var router = require('express').Router();
 
 for (var route in controllers) {

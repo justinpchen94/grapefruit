@@ -1,4 +1,4 @@
-var controllers = require('./controller/ticketIndex.js');
+var controllers = require('../controller/ticketIndex.js');
 var router = require('express').Router();
 
 for (var route in controllers) {

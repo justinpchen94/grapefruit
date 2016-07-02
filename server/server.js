@@ -5,9 +5,9 @@ var app = express();
 
 mongoose.connect('mongodb://localhost/grapefruit');
 //Routing
-var routesApi = require('./routesApi.js');
-var routesUser = require('./routesUser.js');
-var routesTicket = require('./routesTickets.js');
+var routesApi = require('./routes/routesApi.js');
+var routesUser = require('./routes/routesUser.js');
+var routesTicket = require('./routes/routesTickets.js');
 
 app.use(bodyParser.json());
 

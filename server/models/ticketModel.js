@@ -19,6 +19,7 @@ var ticketSchema = new mongoose.Schema({
   },
 
   claimed: Boolean,
+  completed: Boolean,
 
   id: {
     type: String,
@@ -38,8 +39,10 @@ ticketSchema.pre('save', function(next){
   var code = createSha(this.problem + this.name + this.topic);
   this.id = code;
   this.claimed = false;
+  this.completed = false;
   next();
 });
+
 
 //TODO:
 //check if exact same ticket has been entered

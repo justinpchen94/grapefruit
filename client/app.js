@@ -4,7 +4,6 @@ angular.module('App', [
   'App.signinCtrl',
   'App.dashCtrl',
   'App.404Ctrl',
-  'appFactory',
   'authFactory',
   'ticketFactory'
   // 'ngStorage'

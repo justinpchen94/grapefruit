@@ -6,15 +6,14 @@ var jwt = require('jwt-simple');
 module.exports = {
   '/': {
     get: function(req,res) {
+      //retrieves tickets
       console.log("Received GET at /api/ticket/");
 
       Ticket.find().exec(function(err, data) {
-        console.log(data);
+        // console.log(data);
         res.json({data:data});
       });
 
-      // res.end("Received GET at /api/ticket");
-      //retrieves tickets
       
     },
     post: function(req, res) {

@@ -8,23 +8,17 @@ angular.module('ticketFactory', [])
         method:'GET',
         url: 'api/ticket',
       }).then(function(result) {
-        console.log("ticketFactory:11 - the result of getting a ticket");
-        console.log(result);
         return result;
       });
     };
 
     var addTicket = function(ticket) {
       console.log("adding ticket");
-      console.log(ticket);
-
       return $http({
         method:'POST',
         url: 'api/ticket',
         data: {ticket: ticket}
       }).then(function(result) {
-        console.log("the result of adding a ticket");
-        console.log(result);
         return result.data;
       });
 

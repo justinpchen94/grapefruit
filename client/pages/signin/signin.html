@@ -1,17 +1,13 @@
 <div id='signin'>
   <h1>Sign In</h1>
   <form name="signinForm" ng-submit='signin()'>
-    <input name="username" type='text' ng-model='user.username' required ng-minlength="2" ng-maxlength="10">
-    <input name="password" type="password" ng-model='user.password' ng-minlength="2" >
+    <input autocomplete="off" name="username" type='text' ng-model='user.username' required ng-minlength="2" ng-maxlength="10">
+    <input autocomplete="off" name="password" type="password" ng-model='user.password' ng-minlength="2" >
 
-    <div ng-show="signinForm.username.$error.minlength" class="error">Username is too short.</div>
-    <div ng-show="signinForm.username.$error.maxlength" class="error">Username is too long.</div>
-    <div ng-show="signinForm.password.$error.minlength" class="error">Password is too short.</div>
 
     <button>Sign In</button>
 
     <div>username: {{user.username}}</div>
     <div>password: {{user.password}}</div>
   </form>
-  <!-- <a href="#/signup">Don't have an account? <strong>Signup</strong> ...</a> -->
 </div>
