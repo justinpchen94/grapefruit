@@ -5,7 +5,7 @@ angular.module('App.signinCtrl', [
     $scope.display = "this is the signin page";
 
     $scope.signin = function() {
-      authFactory.signin($scope.user)
+      authFactory.signin($scope.user1)
         .then(function(result) {
             console.log(result);
           $window.localStorage.setItem('com.grapefruit', result.token);
@@ -19,7 +19,7 @@ angular.module('App.signinCtrl', [
     };
 
     $scope.signup = function() {
-      authFactory.signup($scope.user)
+      authFactory.signup($scope.user2)
         .then(function(result) {
           $window.localStorage.setItem('com.grapefruit', result.token);
           $window.localStorage.setItem('username',result.user.username);

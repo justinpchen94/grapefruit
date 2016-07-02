@@ -1,13 +1,20 @@
 <div id='signin'>
   <h1>Sign In</h1>
   <form name="signinForm" ng-submit='signin()'>
-    <input autocomplete="off" name="username" type='text' ng-model='user.username' required ng-minlength="2" ng-maxlength="10">
-    <input autocomplete="off" name="password" type="password" ng-model='user.password' ng-minlength="2" >
-
-
+    <input autocomplete="off" name="username" type='text' ng-model='user1.username' required ng-minlength="2" ng-maxlength="10">
+    <input autocomplete="off" name="password" type="password" ng-model='user1.password' ng-minlength="2" >
     <button>Sign In</button>
 
-    <div>username: {{user.username}}</div>
-    <div>password: {{user.password}}</div>
+  </form>
+</div>
+
+
+<div id='signup'>
+  <h1>Sign Up</h1>
+  <form name="signupForm" ng-submit='signup()'>
+    <input autocomplete="off" name="username" type='text' ng-model='user2.username' required ng-minlength="2" ng-maxlength="10">
+    <input autocomplete="off" name="password" type="password" ng-model='user2.password' ng-minlength="2" >
+
+    <button>Sign Up</button>
   </form>
 </div>
